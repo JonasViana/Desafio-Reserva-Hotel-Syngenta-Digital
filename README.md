@@ -27,7 +27,7 @@
 
 <h1>Se tudo der certo, ao acessar você deve ver a seguinte tela:</h1>
 
-![alt text](/exemplo%20input.png)
+![alt text](/inputExemple.png)
 
 <h1> Obs TESTES</h1>
 

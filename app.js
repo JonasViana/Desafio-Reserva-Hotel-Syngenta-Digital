@@ -12,7 +12,7 @@ class App {
         const stdin = process.openStdin();
         const standard_input = process.stdin;
         standard_input.setEncoding('utf-8');
-        console.log("#### Bem vindo a calculadora de hotéis ####\n");
+        console.log("#### Calculadora de preços ####\n");
         this.showMenu();
         standard_input.on('data', function (data) {
             if (data.toLowerCase() == "s\n") {
@@ -35,7 +35,7 @@ class App {
 
     showMenu() {
         console.log("--------------------------------");
-        console.log("Digite os dados da reserva e pressione enter (ou s para sair):");
+        console.log("Digite os dados da reserva e pressione enter");
     }
 }
 
