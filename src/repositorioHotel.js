@@ -5,20 +5,20 @@ const TipoClientePreco = require('./tipoClientePreco')
 const Hotel = require ("./hotel")
 
 class RepositorioHotel {
-    constructor (databasePath = './database.json') {
+    constructor (databasePath = '../database.json') {
         this.databasePath = databasePath
     }
 
-    buscarHoteis() {
+    fetchHotels() {
         var data = JSON.parse(fs.readFileSync(path.resolve(__dirname, this.databasePath)))
 
-        if(data.hoteis == undefined){
+        if(data.hotels == undefined){
             return []
         }
         
-        return data.hoteis.map((item) => {
-            const regular = new TipoClientePreco(item.regular.diaSemana, item.regular.finalSemana)
-            const rewards = new TipoClientePreco(item.reward.diaSemana, item.reward.finalSemana)
+        return data.hotels.map((item) => {
+            const regular = new TipoClientePreco(item.regular.weekday, item.regular.weekend)
+            const rewards = new TipoClientePreco(item.rewards.weekday, item.rewards.weekend)
             return new Hotel(item.nome, item.avaliacao, regular, rewards)
         })
     }

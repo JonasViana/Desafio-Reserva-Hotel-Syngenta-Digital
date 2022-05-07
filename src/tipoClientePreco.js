@@ -1,14 +1,14 @@
 class TipoClientePreco{
-    constructor(diaSemana, finalSemana) {
-        this.diaSemana = diaSemana
-        this.finalSemana = finalSemana
+      constructor(weekday, weekend) {
+        this.weekday = weekday
+        this.weekend = weekend;
     }
 
-    precoPorData(data){
-        if(data.getDay() == 0 || data.getDay() == 6)
-        return this.finalSemana
-        if(data.getDay() == 1 || data.getDay() == 2 || data.getDay() == 3 || data.getDay() == 4 || data.getDay() == 5)
-        return this.diaSemana
+    priceForDate(date) {
+        if(date.getDay() == 0 || date.getDay() == 6)
+            return this.weekend;
+        else 
+            return this.weekday; 
     }
 }
 module.exports = TipoClientePreco

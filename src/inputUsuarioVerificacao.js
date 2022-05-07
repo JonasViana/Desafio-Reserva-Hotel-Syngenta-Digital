@@ -3,7 +3,7 @@ const TipoCliente = require ('./tipoCliente')
 const inputUsuario = require("./inputUsuario")
 
 class InputUsuarioVerificacao{
-    extrairValores(value) {
+    extractValues(value) {
         if (value == undefined) {
             throw Erros.tipoClienteInvalido()
         }
@@ -18,7 +18,7 @@ class InputUsuarioVerificacao{
             throw Erros.tipoClienteInvalido()
         }
 
-        const dataFinal = values[1].split(',').map(item => this.dataDaString(item.trim()))
+        const dataFinal = values[1].split(',').map(item => this.dateFromString(item.trim()))
 
         if(dataFinal.includes(undefined)){
             throw Erros.dataInvalida()
@@ -27,7 +27,7 @@ class InputUsuarioVerificacao{
         return new inputUsuario(tipoCliente, dataFinal)
     }
 
-    dataString(value) {
+    dateFromString(value) {
         const dia = parseInt(value.substring(0,2))
         if(dia === undefined || dia === NaN){
             return undefined
