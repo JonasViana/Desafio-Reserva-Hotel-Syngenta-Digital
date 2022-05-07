@@ -1,8 +1,8 @@
 {
     "hotels":[
        {
-          "name":"Lakewood",
-          "rating":3,
+          "nome":"Lakewood",
+          "avaliacao":3,
           "regular":{
              "weekday":110,
              "weekend":90
@@ -13,8 +13,8 @@
           }
        },
        {
-          "name":"Bridgewood",
-          "rating":4,
+          "nome":"Bridgewood",
+          "avaliacao":4,
           "regular":{
              "weekday":160,
              "weekend":60
@@ -25,8 +25,8 @@
           }
        },
        {
-          "name":"Ridgewood",
-          "rating":5,
+          "nome":"Ridgewood",
+          "avaliacao":5,
           "regular":{
              "weekday":220,
              "weekend":150

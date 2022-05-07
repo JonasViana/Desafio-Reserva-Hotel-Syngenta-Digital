@@ -1,4 +1,4 @@
-class tipoClientePreco{
+class TipoClientePreco{
     constructor(diaSemana, finalSemana) {
         this.diaSemana = diaSemana
         this.finalSemana = finalSemana
@@ -11,4 +11,4 @@ class tipoClientePreco{
         return this.diaSemana
     }
 }
-module.exports = tipoClientePreco
+module.exports = TipoClientePreco

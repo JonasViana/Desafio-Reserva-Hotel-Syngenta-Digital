@@ -1,14 +1,14 @@
 class Erros {
     static tipoClienteInvalido(){
-        return new Erro('Cliente inválido')
+        return new Error('Cliente inválido')
     }
 
     static dataInvalida(){
-        return new Erro('Data inválida')
+        return new Error('Data inválida')
     }
 
     static hotelInvalido(){
-        return new Errs('Hotel inválido')
+        return new Error('Hotel inválido')
     }
 }
 
