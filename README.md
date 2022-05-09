@@ -29,6 +29,16 @@
 
 ![alt text](/inputExemple.png)
 
-<h1> Obs TESTES</h1>
+<h1>TESTES</h1>
 
-<p> Não sei ainda implementar testes unitarios em classes, então não consegui configurar o main.js<p/>
+<p> Para realizar os testes instale os modulos necessários:<p/>
+
+<p> $ yarn install</p>
+
+<p> Para executar os testes use este comando na pasta raiz do projeto</p>
+
+<p> $ yarn test </p>
+
+<h1>Se tudo der certo, ao testar você deve ver a seguinte tela:</h1>
+
+![alt text](/testExemple.png)
