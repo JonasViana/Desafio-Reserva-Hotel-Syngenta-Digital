@@ -22,7 +22,7 @@
 <h1>Para rodar o projeto</h1>
 
 <p> Instale os requisitos Node.js(npm install) </p>
-<p>1 - No terminal abra a pasta server dentro da raiz do projeto. E execute:</p>
+<p>1 - No terminal abra a pasta raiz do projeto. E execute:</p>
 <p>2 - node app.js</p>
 
 <h1>Se tudo der certo, ao acessar você deve ver a seguinte tela:</h1>
