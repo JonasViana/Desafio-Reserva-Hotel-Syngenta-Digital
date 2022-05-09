@@ -1,10 +1,10 @@
-const InputUsuario = require("./src/inputUsuarioVerificacao");
+const InputHandler = require("./src/inputUsuarioVerificacao");
 const CalculadoraDeReservas = require("./src/calculadoraDeReservas");
 
 class App {
 
     constructor() {
-        this.inputHandler = new InputUsuario();
+        this.inputHandler = new InputHandler();
         this.calculator = new CalculadoraDeReservas();
     }
 
@@ -21,13 +21,14 @@ class App {
             this.cheaperHotel(data)
             this.showMenu();
         }.bind(this));
-
     }
 
-    cheaperHotel(dates) {
+    cheaperHotel(data) {
+
         try {
-            let input = this.inputHandler.extractValues(dates);
-            console.log("output:" + this.calculator.cheaperPrice(input.clienteTipo, input.dataFinal))
+            let input = this.inputHandler.extractValues(data);
+            console.log("output:" + this.calculator.cheaperPrice(input.clientType, input.dates))
+            return this.calculator.cheaperPrice(input.clientType, input.dates)
         } catch(error) {
             console.log(error.message)
         }
@@ -41,3 +42,5 @@ class App {
 
 const app = new App()
 app.run();
+
+module.exports = App

@@ -4,45 +4,46 @@ const RepositorioHotel = require('./repositorioHotel')
 
 class calculadoraDeReservas {
     
-    constructor(repositorioHotel = new RepositorioHotel()) {
-        this.repositorioHotel = repositorioHotel
+    constructor(hotelRepository = new RepositorioHotel()) {
+        this.hotelRepository = hotelRepository
     }
-    cheaperPrice(tipoCliente, dates) {
-        if(tipoCliente.constructor !== String || tipoCliente == undefined || !TipoCliente.isValid(tipoCliente)) {
-            throw Erros.tipoClienteInvalido();
+
+    cheaperPrice(clientType, dates) {
+        if(clientType.constructor !== String || clientType == undefined || !TipoCliente.isValid(clientType)) {
+            throw Erros.invalidClientType();
         } else if (dates === undefined || dates.constructor !== Array) {
-            throw Erros.dataInvalida()
+            throw Erros.invalidDates()
         }
-        let hotels = this.repositorioHotel.fetchHotels();
+        let hotels = this.hotelRepository.fetchHotels();
         if(hotels.length == 0) {
-            throw Erros.hotelInvalido()
+            throw Erros.invalidHotel()
         }
         var cheaperHotel = hotels[0];
-        let cheaperPrice = this.calculatePrice(hotels[0], tipoCliente, dates);
+        let cheaperPrice = this.calculatePrice(hotels[0], clientType, dates);
         for(var i = 1; i < hotels.length; i++) {
-            const currentPrice = this.calculatePrice(hotels[i], tipoCliente, dates);
+            const currentPrice = this.calculatePrice(hotels[i], clientType, dates);
             if(currentPrice < cheaperPrice) {
                 cheaperHotel = hotels[i];
                 cheaperPrice = currentPrice;
-            } else if(currentPrice === cheaperPrice &&  cheaperHotel.avaliacao < hotels[i].avaliacao) {
+            } else if(currentPrice === cheaperPrice && cheaperHotel.rating < hotels[i].rating) {
                 cheaperHotel = hotels[i];
                 cheaperPrice = currentPrice;
             }
         }
-        return  cheaperHotel.nome;
+        return cheaperHotel.name;
     }
     
-    calculatePrice(hotel, tipoCliente, dates) {
-        let priceType = this.getPrice(hotel, tipoCliente);
+    calculatePrice(hotel, clientType, dates) {
+        let priceType = this.getPrice(hotel, clientType);
         return dates
         .map((date) => priceType.priceForDate(date))
         .reduce( (accum, curr) => accum + curr );
     }
     
-    getPrice(hotel, tipoCliente) {
-        if(tipoCliente == TipoCliente.REGULAR) {
+    getPrice(hotel, clientType) {
+        if(clientType == TipoCliente.REGULAR) {
             return hotel.regular;
-        } else if (tipoCliente == TipoCliente.REWARDS) {
+        } else if (clientType == TipoCliente.REWARDS) {
             return hotel.rewards;
         }
     }

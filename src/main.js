@@ -1,6 +1,11 @@
+const App = require('../app');
+
 function getCheapestHotel (calculadoraDeReservas) { 
 
-    return "Cheapest hotel name"
+    const AppObj = new App;
+    const resultado = AppObj.cheaperHotel(calculadoraDeReservas)
+
+    return resultado
 }
 
 exports.getCheapestHotel = getCheapestHotel

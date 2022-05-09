@@ -1,5 +1,5 @@
-class TipoClientePreco{
-      constructor(weekday, weekend) {
+class ClientTypePrice{
+    constructor(weekday, weekend) {
         this.weekday = weekday
         this.weekend = weekend;
     }
@@ -11,4 +11,4 @@ class TipoClientePreco{
             return this.weekday; 
     }
 }
-module.exports = TipoClientePreco
+module.exports = ClientTypePrice

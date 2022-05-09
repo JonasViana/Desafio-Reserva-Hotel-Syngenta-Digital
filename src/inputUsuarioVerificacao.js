@@ -1,75 +1,68 @@
 const Erros = require ("./erros")
-const TipoCliente = require ('./tipoCliente')
+const ClientType = require ('./tipoCliente')
 const inputUsuario = require("./inputUsuario")
 
 class InputUsuarioVerificacao{
     extractValues(value) {
         if (value == undefined) {
-            throw Erros.tipoClienteInvalido()
+          throw Erros.invalidClientType();
         }
-
-        const values = value.split(':')
-        if(values.length != 2) {
-            throw Erros.tipoClienteInvalido()
+        const values = value.split(":");
+        if (values.length != 2) {
+          throw Erros.invalidClientType();
         }
-
-        const tipoCliente = values [0].trim().toLowerCase()
-        if (!TipoCliente.isValid(tipoCliente)){
-            throw Erros.tipoClienteInvalido()
+        const clientType = values[0].trim().toLowerCase();
+        if (!ClientType.isValid(clientType)) {
+          throw Erros.invalidClientType();
         }
-
-        const dataFinal = values[1].split(',').map(item => this.dateFromString(item.trim()))
-
-        if(dataFinal.includes(undefined)){
-            throw Erros.dataInvalida()
+        const dates = values[1]
+          .split(",")
+          .map(item => this.dateFromString(item.trim()));
+        if(dates.includes(undefined)) {
+            throw Erros.invalidDates();
         }
-
-        return new inputUsuario(tipoCliente, dataFinal)
-    }
-
-    dateFromString(value) {
-        const dia = parseInt(value.substring(0,2))
-        if(dia === undefined || dia === NaN){
+        return new inputUsuario(clientType, dates);
+      }
+    
+      dateFromString(value) {
+        const day = parseInt(value.substring(0, 2));
+        if(day === undefined || day === NaN) { 
+            
             return undefined
         }
-
-        const mes = this.getMes(value.substring(2, 5))
-        if( mes === -1) {
+        const month = this.getMonthIndex(value.substring(2, 5));
+        if(month === -1) {
             return undefined
         }
-
-        const ano = value.substring(5, 9)
-        if(ano === undefined || ano === NaN){
+        
+        const year = value.substring(5, 9);
+        if(year == undefined || year == NaN) { 
             return undefined
         }
-
-        return new Date(ano, mes, dia)
-    }
-
-    getMes(mes){
-        let meses = [
-            "jan",
-            "feb",
-            "mar",
-            "apr",
-            "may",
-             "jun",
-            "jul",
-            "aug",
-            "sep",
-            "oct",
-            "nov",
-            "dec"
+        return new Date(year, month, day);
+      }
+    
+      getMonthIndex(month) {
+        let months = [
+          "jan",
+          "feb",
+          "mar",
+          "apr",
+          "may",
+          "jun",
+          "jul",
+          "aug",
+          "sep",
+          "oct",
+          "nov",
+          "dec"
         ]
-
-        for (var i = 0; i < meses.length; i++){
-            if(meses[i] === mes.trim().toLowerCase()){
+        for(var i = 0; i < months.length; i++) {
+            if(months[i] === month.trim().toLowerCase()) {
                 return i
             }
         }
-
         return -1
-    }
+      }
 }
-
 module.exports = InputUsuarioVerificacao

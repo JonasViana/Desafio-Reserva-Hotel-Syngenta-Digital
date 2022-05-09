@@ -1,7 +1,7 @@
 class InputUsuario {
-    constructor(clienteTipo, dataFinal){
-        this.clienteTipo = clienteTipo
-        this.dataFinal = dataFinal
+    constructor(clientType, dates) {
+        this.clientType = clientType;
+        this.dates = dates;
     }
 }
 
